@@ -1,6 +1,7 @@
 import 'package:afrchavanodflutter/pages/DetailActivity.dart';
 import 'package:afrchavanodflutter/widgets/AfrAppBar.dart';
 import 'package:afrchavanodflutter/widgets/MobileMainSection.dart';
+import 'package:afrchavanodflutter/widgets/NewsList.dart';
 import 'package:afrchavanodflutter/widgets/sectionTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -91,6 +92,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         SectionTitle(title: "Actualités", titleFontSize : isDesktop ? 38 : 30),
                       ],
                     ),
+                    NewsList(),
+                    SizedBox(height: 30),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

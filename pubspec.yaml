@@ -32,6 +32,7 @@ dependencies:
   adaptive_breakpoints: ^0.0.4
   google_fonts: ^2.0.0
   koukicons: ^2.0.3
+  carousel_slider: ^3.0.0
 
 dev_dependencies:
   flutter_test:

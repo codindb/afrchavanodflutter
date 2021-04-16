@@ -41,10 +41,17 @@ class _AfrAppBarState extends State<AfrAppBar> with SingleTickerProviderStateMix
       pinned: true,
       backgroundColor: Colors.white,
       expandedHeight: isDesktop ? 300.0 : 160.0,
+      leading: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Image.asset("assets/images/afrLogo.png"),
+      ),
       flexibleSpace: FlexibleSpaceBar(
-        title: Image.asset(
-          "assets/images/afrLogo.png",
-          width: isDesktop ? 200.0 : 80.0,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 5.0),
+          child: Image.asset(
+            "assets/images/afrLogo.png",
+            width: isDesktop ? 200.0 : 80.0,
+          ),
         ),
         background: Image.asset(
           "assets/images/appBarBackground.jpg",
