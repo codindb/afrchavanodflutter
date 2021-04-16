@@ -13,6 +13,7 @@ class NewsList extends StatefulWidget {
 
 class _NewsListState extends State<NewsList> {
   Future<List<News>> futureNews;
+  int _current = 0;
 
   @override
   void initState() {
@@ -23,7 +24,7 @@ class _NewsListState extends State<NewsList> {
   @override
   Widget build(BuildContext context) {
     final isDesktop = isDisplayDesktop(context);
-    int _current = 0;
+    
     return FutureBuilder<List<News>>(
       future: futureNews,
       builder: (context, snapshot) {
@@ -32,18 +33,17 @@ class _NewsListState extends State<NewsList> {
             children: [
               CarouselSlider.builder(
                 options: CarouselOptions(
-                  // height: 200,
-                  autoPlay: true,
-                  enlargeCenterPage: true,
-                  aspectRatio: 2.5,
-                  viewportFraction: 0.7,
-                  initialPage: 0,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  }
-                ),
+                    //height: isDesktop ? 250 : 200,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    aspectRatio: isDesktop ? 5.5 : 2.5,
+                    viewportFraction: isDesktop ? 0.3 : 0.7,
+                    initialPage: 0,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    }),
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index, realIndex) {
                   return Container(
@@ -61,44 +61,62 @@ class _NewsListState extends State<NewsList> {
                       ),
                       margin: EdgeInsets.all(5.0),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        child: Stack(
-                          children: <Widget>[
-                            Image.network(snapshot.data[index].imageUrl, fit: BoxFit.cover, width: 1000.0),
-                            Positioned(
-                              bottom: 0.0,
-                              left: 0.0,
-                              right: 0.0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Color.fromARGB(200, 0, 0, 0),
-                                      Color.fromARGB(0, 0, 0, 0)
-                                    ],
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          child: Stack(
+                            children: <Widget>[
+                              Image.network(snapshot.data[index].imageUrl,
+                                  fit: BoxFit.cover, width: 1000.0),
+                              Positioned(
+                                bottom: 0.0,
+                                left: 0.0,
+                                right: 0.0,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color.fromARGB(200, 0, 0, 0),
+                                        Color.fromARGB(0, 0, 0, 0)
+                                      ],
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter,
+                                    ),
                                   ),
-                                ),
-                                padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                                child: Text(
-                                  snapshot.data[index].title,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 10.0, horizontal: 20.0),
+                                  child: Text(
+                                    snapshot.data[index].title,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: isDesktop ? 18.0 : 11.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        )
-                      ),
+                            ],
+                          )),
                     ),
                   );
                 },
               ),
-              // Carousel Indicators should go here
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: snapshot.data.map((url) {
+                    int index = snapshot.data.indexOf(url);
+                    return Container(
+                      width: 10.0,
+                      height: 10.0,
+                      margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: _current == index
+                          ? Color.fromRGBO(0, 0, 0, 0.9)
+                          : Color.fromRGBO(0, 0, 0, 0.4),
+                      ),
+                    );
+                  }
+                ).toList(),
+              ),
             ],
           );
         } else if (snapshot.hasError) {
