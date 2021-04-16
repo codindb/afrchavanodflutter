@@ -1,6 +1,11 @@
+import 'package:afrchavanodflutter/pages/DetailActivity.dart';
 import 'package:afrchavanodflutter/widgets/AfrAppBar.dart';
+import 'package:afrchavanodflutter/widgets/MobileMainSection.dart';
+import 'package:afrchavanodflutter/widgets/sectionTitle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:koukicons/advertising.dart';
+import 'package:koukicons/mindMap.dart';
 import 'layout/adaptive.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,6 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'AFR Chavanod',
       theme: ThemeData(
         // This is the theme of your application.
@@ -31,6 +37,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: MyHomePage(),
+      routes: {
+        DetailActivity.routeName: (context) => DetailActivity(),
+      },
     );
   }
 }
@@ -72,13 +81,30 @@ class _MyHomePageState extends State<MyHomePage> {
                  Column(
                    mainAxisAlignment: MainAxisAlignment.start,
                    children: [
-                    Container(
-                      height: 1000,
-                      width: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10.0, bottom: 20),
+                          child: KoukiconsAdvertising(height: isDesktop ? 50 : 35),
+                        ),
+                        SectionTitle(title: "Actualités", titleFontSize : isDesktop ? 38 : 30),
+                      ],
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10.0, bottom: 20),
+                          child: KoukiconsMindMap(height: isDesktop ? 50 : 35),
+                        ),
+                        SectionTitle(title: "L'association", titleFontSize: isDesktop ? 38 : 30),
+                      ],
+                    ),
+                    isDesktop ? 
+                    MobileMainSection() :
+                    MobileMainSection(),
+                    SizedBox(height: 200),
                   ],
                  )
                ]
