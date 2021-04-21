@@ -36,7 +36,7 @@ class _AfrAppBarState extends State<AfrAppBar> with SingleTickerProviderStateMix
     final isDesktop = isDisplayDesktop(context);
     return SliverAppBar(
       iconTheme: IconThemeData(
-        color: Colors.black26,
+        color: Colors.black54,
       ),
       pinned: true,
       backgroundColor: Colors.white,
