@@ -49,6 +49,7 @@ class _NewsListState extends State<NewsList> {
                   return Container(
                     child: Container(
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
