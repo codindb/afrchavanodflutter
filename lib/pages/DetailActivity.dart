@@ -25,7 +25,7 @@ class _DetailActivityState extends State<DetailActivity> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      activity.activity.name,
+                      activity.activity.title,
                       style: TextStyle(
                         color: Colors.blueGrey,
                         fontSize: 48,

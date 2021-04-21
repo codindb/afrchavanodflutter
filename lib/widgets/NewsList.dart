@@ -87,7 +87,7 @@ class _NewsListState extends State<NewsList> {
                                     snapshot.data[index].title,
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: isDesktop ? 18.0 : 11.0,
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -133,13 +133,13 @@ class _NewsListState extends State<NewsList> {
 class News {
   int id;
   String title;
-  String content;
+  String description;
   String imageUrl;
 
   News({
     @required this.id,
     @required this.title,
-    @required this.content,
+    @required this.description,
     @required this.imageUrl,
   });
 
@@ -147,14 +147,14 @@ class News {
     return News(
       id: json['id'],
       title: json['titre'],
-      content: json['contenu'],
+      description: json['description'],
       imageUrl: json['photo']['url'],
     );
   }
 }
 
 Future<List<News>> fetchNews() async {
-  final response = await http.get(Uri.https("afrchavanod.herokuapp.com",
+  final response = await http.get(Uri.https("afrchavanod74.herokuapp.com",
       "/actualites", {"_sort": "published_at:DESC"}));
 
   if (response.statusCode == 200) {

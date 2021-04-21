@@ -35,7 +35,7 @@ class _FutureActivitiesState extends State<FutureActivities> {
               return ListTile(
                 leading: KoukiconsLayers(height: 30),
                 title: Text(
-                  snapshot.data[index].name,
+                  snapshot.data[index].title,
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontSize: 22,
@@ -57,7 +57,7 @@ class _FutureActivitiesState extends State<FutureActivities> {
                     DetailActivity.routeName,
                     arguments: ActivityArgs(snapshot.data[index])
                   );
-                  print(snapshot.data[index].name + " tapped");
+                  print(snapshot.data[index].title + " tapped");
                 },
               );
             },
@@ -78,27 +78,27 @@ class ActivityArgs {
 }
 class Activity {
   int id;
-  String name;
+  String title;
   String description;
 
   Activity({
     @required this.id,
-    @required this.name,
+    @required this.title,
     @required this.description,
   });
 
   factory Activity.fromJson(Map<String, dynamic> json) {
     return Activity(
       id: json['id'],
-      name: json['nom'],
-      description: json['description'],
+      title: json['titre'],
+      description: json['description_courte'],
     );
   }
 }
 
 Future<List<Activity>> fetchActivities() async {
   final response =
-      await http.get(Uri.https("afrchavanod.herokuapp.com", "/activites"));
+      await http.get(Uri.https("afrchavanod74.herokuapp.com", "/activites"));
 
   if (response.statusCode == 200) {
     var jsonResponse = jsonDecode(response.body);
