@@ -42,14 +42,14 @@ class _FutureActivitiesState extends State<FutureActivities> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                subtitle: Text(
-                  snapshot.data[index].description,
-                  style: TextStyle(
-                    color: Colors.blueGrey,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
+                // subtitle: Text(
+                //   snapshot.data[index].description,
+                //   style: TextStyle(
+                //     color: Colors.blueGrey,
+                //     fontSize: 16,
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                // ),
                 trailing: KoukiconsSign(height: 30),
                 onTap: () {
                   Navigator.pushNamed(
